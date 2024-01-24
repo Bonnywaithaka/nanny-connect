@@ -1,95 +1,140 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+// @ts-nocheck
+
+"use client";
+
+import React from "react";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import List from "@mui/material/List";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import GuestWrapper from "../components/pages/GuestWrapper";
+import Dialog from "../components/Dialog";
+import Alert from "../components/Alert";
+import GetCountriesQuery from "../api/graphqlQueries/GetCountries";
+import ListShimmers from "../components/shimmers/ListShimmers";
+import CountriesListItem from "../containers/homeComponents/CountriesListItem";
+import CountrySearchTextField from "../components/CountrySearchTextField";
+import HomeDesktop from "../components/pages/desktop/HomeDesktop";
+import HomeMobile from "../components/pages/mobile/HomeMobile";
 
 export default function Home() {
+  const [searchParam, setSearchParam] = React.useState("");
+  const [dialogDetails, setDialogDetails] = React.useState({
+    open: false,
+    country: "",
+  });
+  const mobileMatches = useMediaQuery("(max-width:1024px)");
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchParam(event.target.value);
+  };
+  const selectOption = (value: string) => {
+    setDialogDetails({ open: true, country: value });
+  };
+  const closeDialog = () => {
+    setDialogDetails({ open: false, country: "" });
+  };
+  const { open, country } = dialogDetails;
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <GuestWrapper>
+      <Dialog
+        open={open}
+        maxWidth="xs"
+        modalContent={
+          <div className="center">
+            <Typography variant="body1">
+              You have selected <strong>{country}</strong>.
+            </Typography>
+            <Box mt={1}>
+              <Button variant="contained" color="primary" onClick={closeDialog}>
+                Close
+              </Button>
+            </Box>
+          </div>
+        }
+        handleClose={closeDialog}
+      />
+      <div>
+        <Grid container spacing={2} sx={{ height: "85vh" }}>
+          <Grid item xs={12}>
+            {!mobileMatches ? <HomeDesktop /> : <HomeMobile />}
+          </Grid>
+          <Grid item lg={3} xl={3} />
+          <Grid item lg={6} xl={6} sm={12} xs={12}>
+            <Typography
+              variant="h1"
+              sx={{
+                fontSize: 35,
+              }}
+            >
+              Welcome to{" "}
+              <Link href="https://nextjs.org" target="_blank">
+                Next.js!
+              </Link>
+            </Typography>
+            <Box mt={1}>
+              <Typography variant="body1">
+                Get started by editing <code>pages/index.js</code>
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item lg={3} xl={3} />
+          <Grid item lg={3} xl={3} />
+          <Grid item lg={6} xl={6} sm={12} xs={12}>
+            <Card style={{ width: "100%" }}>
+              <CardHeader
+                title="Countries"
+                sx={{
+                  "& span": {
+                    fontSize: 20,
+                  },
+                }}
+              />
+              <CardContent>
+                <CountrySearchTextField handleChange={handleChange} />
+                <Box
+                  sx={{
+                    maxHeight: 300,
+                    overflow: "scroll",
+                  }}
+                >
+                  <GetCountriesQuery
+                    variables={{ param: searchParam }}
+                    loader={<ListShimmers />}
+                  >
+                    {({ getCountries }) => (
+                      <div>
+                        {getCountries.length > 0 ? (
+                          <List>
+                            {getCountries.map((item) => (
+                              <CountriesListItem
+                                key={item.country}
+                                item={item}
+                                selectOption={selectOption}
+                              />
+                            ))}
+                          </List>
+                        ) : (
+                          <Alert severity="warning">
+                            Sorry we do not have any countries
+                          </Alert>
+                        )}
+                      </div>
+                    )}
+                  </GetCountriesQuery>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item lg={3} xl={3} />
+        </Grid>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </GuestWrapper>
   );
 }
