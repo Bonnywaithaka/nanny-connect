@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import List from "@mui/material/List";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import LandingPage from "@/components/LandingPage";
 import GuestWrapper from "../components/pages/GuestWrapper";
 import Dialog from "../components/Dialog";
 import Alert from "../components/Alert";
@@ -43,98 +44,7 @@ export default function Home() {
   const { open, country } = dialogDetails;
   return (
     <GuestWrapper>
-      <Dialog
-        open={open}
-        maxWidth="xs"
-        modalContent={
-          <div className="center">
-            <Typography variant="body1">
-              You have selected <strong>{country}</strong>.
-            </Typography>
-            <Box mt={1}>
-              <Button variant="contained" color="primary" onClick={closeDialog}>
-                Close
-              </Button>
-            </Box>
-          </div>
-        }
-        handleClose={closeDialog}
-      />
-      <div>
-        <Grid container spacing={2} sx={{ height: "85vh" }}>
-          <Grid item xs={12}>
-            {!mobileMatches ? <HomeDesktop /> : <HomeMobile />}
-          </Grid>
-          <Grid item lg={3} xl={3} />
-          <Grid item lg={6} xl={6} sm={12} xs={12}>
-            <Typography
-              variant="h1"
-              sx={{
-                fontSize: 35,
-              }}
-            >
-              Welcome to{" "}
-              <Link href="https://nextjs.org" target="_blank">
-                Next.js!
-              </Link>
-            </Typography>
-            <Box mt={1}>
-              <Typography variant="body1">
-                Get started by editing <code>pages/index.js</code>
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item lg={3} xl={3} />
-          <Grid item lg={3} xl={3} />
-          <Grid item lg={6} xl={6} sm={12} xs={12}>
-            <Card style={{ width: "100%" }}>
-              <CardHeader
-                title="Countries"
-                sx={{
-                  "& span": {
-                    fontSize: 20,
-                  },
-                }}
-              />
-              <CardContent>
-                <CountrySearchTextField handleChange={handleChange} />
-                <Box
-                  sx={{
-                    maxHeight: 300,
-                    overflow: "scroll",
-                  }}
-                >
-                  <GetCountriesQuery
-                    variables={{ param: searchParam }}
-                    loader={<ListShimmers />}
-                  >
-                    {({ getCountries }) => (
-                      <div>
-                        {getCountries.length > 0 ? (
-                          <List>
-                            {getCountries.map((item) => (
-                              <CountriesListItem
-                                key={item.country}
-                                item={item}
-                                selectOption={selectOption}
-                              />
-                            ))}
-                          </List>
-                        ) : (
-                          <Alert severity="warning">
-                            Sorry we do not have any countries
-                          </Alert>
-                        )}
-                      </div>
-                    )}
-                  </GetCountriesQuery>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item lg={3} xl={3} />
-        </Grid>
-      </div>
+      <LandingPage />
     </GuestWrapper>
   );
 }

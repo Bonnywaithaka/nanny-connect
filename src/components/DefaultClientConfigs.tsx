@@ -4,11 +4,13 @@ import React from "react";
 import createCache from "@emotion/cache";
 import { useServerInsertedHTML } from "next/navigation";
 import { CacheProvider } from "@emotion/react";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ApolloProvider } from "@apollo/client";
+import theme from "@safaricom/sui";
 import Client from "../apolloConfigs/Client";
-import theme from "../theme";
+
+// import theme from "../theme";
 
 export default function DefaultClientConfigs({
   children,
@@ -68,7 +70,7 @@ export default function DefaultClientConfigs({
   return (
     <CacheProvider value={cache}>
       <ApolloProvider client={Client}>
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
           <CssBaseline />
           {children}
         </ThemeProvider>

@@ -1,6 +1,4 @@
-type Mesage = Record<string, string> | string;
-
-const errorHandler = (message: Mesage) => {
+const errorHandler = (message) => {
   if (
     typeof message === "object" &&
     "type" in message &&
