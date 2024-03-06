@@ -12,8 +12,9 @@ function page() {
     >
       <Card
         sx={{
-          paddingX: "100px",
-          paddingY: "100px",
+          width:"40%",
+          margin:"100px",
+          padding: "100px",
         }}
       >
         <SignIn />

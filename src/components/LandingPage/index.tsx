@@ -1,66 +1,93 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import React from "react";
-import Image from "next/image";
-import innovationsBanner from "../../../public/images/Banner.svg";
-import SuccessStories from "./SuccessStories";
-import Achievements from "./Achievements";
-import FaqsPage from "../FaqsPage";
+import { useRouter } from "next/navigation";
 
 function LandingPage() {
+  const router = useRouter();
   return (
-    <Box width="100%" marginTop={18}>
-      <Grid container spacing={2} display="flex" justifyContent="space-between">
-        <Grid item md={5}>
-          <Box>
-            <Typography variant="h2" fontSize={40} fontWeight={400}>
-              Pioneering the future.
-              <br />
-              Explore, Create, Innovate
-            </Typography>
-          </Box>
-          <Box
+    <Box
+      sx={{
+        position: "relative",
+        width: "100%",
+        height: "100vh",
+        overflow: "hidden",
+        // backgroundColor: "rgba(0, 0, 0, 0.5)",
+      }}
+    >
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        color="#fff"
+        marginTop={20}
+        marginBottom="230px"
+      >
+        <Box>
+          <Typography variant="h1">Nanny Connect</Typography>
+        </Box>
+        <Box display="flex" justifyContent="space-between" width="40%">
+          <Typography>HOW IT WORKS</Typography>
+          <Typography>PRICES AND SERVICES</Typography>
+          <Typography>ABOUT US</Typography>
+          <Typography>FAQs</Typography>
+        </Box>
+        <Box>
+          <Button
+            variant="contained"
             sx={{
-              marginTop: "20px",
-              marginBottom: "50px",
+              backgroundColor: "#fff",
+              color: "#000",
+              paddingLeft: "50px",
+              paddingRight: "50px",
+              borderRadius: "10px",
             }}
+            onClick={() => router.push("/sign-in")}
           >
-            <Typography
-              variant="h6"
-              lineHeight={1}
-              fontSize={20}
-              fontWeight={400}
+            sign In
+          </Button>
+        </Box>
+      </Box>
+      <Box color="#fff" display="flex" justifyContent="space-between">
+        <Box width="50%">
+          <Typography variant="h1">
+            Where Heartfelt Care meets Hassle-Free House helps
+          </Typography>
+        </Box>
+        <Box display="flex" flexDirection="column" padding="20px">
+          <Box marginBottom={20}>
+            <Button
+              variant="outlined"
+              size="large"
+              sx={{
+                paddingRight: "70px",
+                paddingLeft: "70px",
+                paddingTop: "20px",
+                paddingBottom: "20px",
+                borderRadius: "5px",
+                color: "#fff",
+                border: "1px solid #fff",
+                borderColor: "#fff",
+              }}
             >
-              Step into a world where innovation knows no boundaries, a realm
-              where the extraordinary becomes routine, and the status quo is an
-              ever-shifting canvas of potential.
-            </Typography>
+              Become A Nanny
+            </Button>
           </Box>
           <Box>
             <Button
               variant="contained"
+              size="large"
               sx={{
-                textDecoration: "none",
+                paddingRight: "100px",
+                paddingLeft: "100px",
+                paddingTop: "20px",
+                paddingBottom: "20px",
+                borderRadius: "5px",
+                color: "#fff",
               }}
             >
-              Submit an Idea
+              Hire Now
             </Button>
           </Box>
-        </Grid>
-        <Grid item>
-          <Box>
-            <Image
-              src={innovationsBanner}
-              alt="banner"
-              width={769}
-              height={539}
-            />
-          </Box>
-        </Grid>
-      </Grid>
-      <Box>
-        <SuccessStories />
-        <Achievements />
-        <FaqsPage />
+        </Box>
       </Box>
     </Box>
   );

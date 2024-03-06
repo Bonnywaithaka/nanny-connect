@@ -91,8 +91,14 @@ function SignIn() {
                   marginBottom: 1.25,
                 }}
               >
-                Safaricom Innovation Portal
+                Nanny Connect
               </Typography>
+             <Box sx={{
+              textAlign:"center",
+              marginTop:"10px"
+             }}>
+             <Typography variant="h3">Login</Typography>
+             </Box>
             </Grid>
             <Grid item xs={12}>
               <Grid item>
