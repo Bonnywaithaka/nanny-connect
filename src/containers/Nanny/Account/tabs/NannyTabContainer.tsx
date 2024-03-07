@@ -52,11 +52,13 @@ function NannyTabContainer() {
             }}
           >
             {NannyTabsArray.map((tabs) => (
-              <Tab key={tabs.value} value={tabs.value} label={tabs.label} />
+              <Tab key={tabs.value} value={tabs.value} label={tabs.label} sx={{
+                fontSize:"20px",
+                margin:"10px 100px 10px 0px"
+              }} />
             ))}
           </Tabs>
         </Box>
-        {/* <OrganisationIconComponent /> */}
       </Box>
 
       <CustomTabPanel value={value} items={NannyTabsArray} />

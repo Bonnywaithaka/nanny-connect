@@ -5,6 +5,7 @@ import { Avatar, Box, Button, Input, Typography } from "@mui/material";
 import Image from "next/image";
 import React, { useState } from "react";
 import Dialog from "@/components/Dialog";
+import profile from "../../../public/images/profile/image.png";
 
 function Nannycomponent({ nanny }) {
   const [open, setOpen] = useState<boolean>(false);
@@ -26,10 +27,11 @@ function Nannycomponent({ nanny }) {
         minHeight: "200px",
       }}
     >
-      <Box>
-        <Image src={nanny} alt="profile" width={300} height={300} />
+      <Box width="25%">
+        <Image src={profile} alt="profile" width={200} height={200} />
       </Box>
-      <Box>
+      <Box width="20%">
+      <Typography variant="h5" color={nanny.color}>{nanny.package}</Typography>
         <Typography variant="h3">{nanny.name}</Typography>
         <Typography>{nanny.rating} (10 reviews)</Typography>
         <Typography>View All Reviews & Profile</Typography>
@@ -37,7 +39,7 @@ function Nannycomponent({ nanny }) {
           HIRE
         </Button>
       </Box>
-      <Box>
+      <Box width="33%">
         {nanny?.employers?.map((emp) => (
           <Box key={emp.id} marginTop={10}>
             <Box display="flex">
@@ -88,7 +90,7 @@ function Nannycomponent({ nanny }) {
               <Button variant="contained" sx={{ color: "#fff" }}>
                 Pay with M-pesa
               </Button>
-              <Button variant="outlined">Cancel</Button>
+              <Button variant="outlined" onClick={handleClose}>Cancel</Button>
             </Box>
           </Box>
         }

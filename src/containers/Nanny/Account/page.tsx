@@ -1,8 +1,11 @@
-import { Box, Grid, Typography } from "@mui/material";
+"use client";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
-import cardmedia from "../../../../public/images/card/cardMedia.svg";
+import cardmedia from "../../../../public/images/profile/backbanner.png";
+import profile from "../../../../public/images/profile/image.png";
 import NannyTabContainer from "./tabs/NannyTabContainer";
+import { useRouter } from "next/navigation";
 
 const skills = [
   {
@@ -24,23 +27,64 @@ const skills = [
 ];
 
 function NannyProfile() {
+  const router = useRouter();
   return (
     <Box>
       <Box>
-        <Box>
+        <Box margin="300px 0px">
           <Box
             sx={{
-              backgroundImage: `url(${cardmedia})`,
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover",
-              height: "385px",
-              width:"500px"
+              position: "absolute",
+              top: "10%",
+              height: "300px",
+              width: "100%",
+              marginBottom: "20px",
             }}
-          />
-          <Image src={cardmedia} alt="" width={200} height={500} />
+          >
+            <Image src={cardmedia} alt="logo" fill objectFit="cover" />
+          </Box>
+          <Box
+            sx={{
+              padding: "20px",
+              marginBottom: "20px",
+              position: "absolute",
+              top: "38%",
+              left: "16px", // Adjust as needed
+              transform: "translateY(-50%)",
+            }}
+          >
+            <Image src={profile} alt="logo" width={200} height={200} />
+          </Box>
         </Box>
       </Box>
-      <Grid container spacing={2}>
+      <Box
+        sx={{
+          padding: "20px",
+          marginBottom: "20px",
+          position: "absolute",
+          top: "20%",
+          right: "16px", // Adjust as needed
+          transform: "translateY(-50%)",
+        }}
+      >
+        <Button
+          variant="contained"
+          onClick={() => {
+            router.push("/account/update");
+          }}
+        >
+          Update Profile Details
+        </Button>
+      </Box>
+      <Grid
+        container
+        spacing={2}
+        marginTop={20}
+        sx={{
+          position: "absolute",
+          top: "50",
+        }}
+      >
         <Grid item md={5} margin="10px">
           <Box
             sx={{

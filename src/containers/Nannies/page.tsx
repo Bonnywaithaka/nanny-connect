@@ -8,10 +8,12 @@ import React from "react";
 const nannies = [
   {
     id: "1",
-    name: "Borniface Onyango",
+    name: "Angela Kandie",
     rating: "5",
     experience: "5",
     salary: "40,000",
+    package:"Premium",
+    color:"blue",
     profile:
       "https://images.pexels.com/photos/18053574/pexels-photo-18053574/free-photo-of-a-man-standing-on-a-boardwalk-and-taking-a-picture-with-a-camera.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     employers: [
@@ -31,19 +33,38 @@ const nannies = [
   },
   {
     id: "2",
-    name: "Borniface Onyango",
+    name: "Bernice Anyango",
     rating: "5",
     experience: "5",
     salary: "40,000",
+    package:"Standard",
+    color:"red",
     profile:
       "https://images.pexels.com/photos/18053574/pexels-photo-18053574/free-photo-of-a-man-standing-on-a-boardwalk-and-taking-a-picture-with-a-camera.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  },
+ 
+      employers: [
+        {
+          id: "1",
+          empName: "Walter Waithaka",
+          startDate: "10-02-2023",
+          endDate: "30-03-2024",
+        },
+        {
+          id: "2",
+          empName: "Gloria Waithaka",
+          startDate: "10-02-2022",
+          endDate: "30-03-2023",
+        },
+      ],
+    },
   {
     id: "3",
     name: "Borniface Onyango",
     rating: "5",
     experience: "5",
-    salary: "40,000",
+    salary: "10,000",
+    package:"Basic",
+    color:"orange",
     profile:
       "https://images.pexels.com/photos/18053574/pexels-photo-18053574/free-photo-of-a-man-standing-on-a-boardwalk-and-taking-a-picture-with-a-camera.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },

@@ -5,8 +5,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { styled } from "@mui/material/styles";
 import { Form as FormikForm, Formik } from "formik";
-import { useMutation } from "@apollo/client";
-import { withRouter, useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import RouterLink from "next/link";
 import * as Yup from "yup";
 import Box from "@mui/material/Box";
@@ -15,10 +14,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 import InputAdornment from "@mui/material/InputAdornment";
 import Link from "@mui/material/Link";
 import { Email, Lock, PasswordOutlined } from "@mui/icons-material";
-import SafaricomLogo from "../../../public/images/saf-logo.svg";
-import errorHandler from "../../utils/errorHandler";
-import isEmptyObject from "../../utils/isEmptyObject";
-import StyledTextField from "../../components/StyledTextField";
+import errorHandler from "../utils/errorHandler";
+import isEmptyObject from "../utils/isEmptyObject";
+import StyledTextField from "../components/StyledTextField";
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string()
@@ -47,8 +45,8 @@ const CreateAccountLink = styled(Link)(() => ({
   cursor: "pointer",
 }));
 
-function SignIn() {
-  //   const router = useRouter();
+function SIgnInForm() {
+  const router = useRouter();
   const [passwordIsMasked, setPasswordIsMasked] = React.useState(true);
   const [errorMessage, setErrorMessage] = React.useState();
   const [requestLoading, setRequestLoading] = React.useState(false);
@@ -93,12 +91,14 @@ function SignIn() {
               >
                 Nanny Connect
               </Typography>
-             <Box sx={{
-              textAlign:"center",
-              marginTop:"10px"
-             }}>
-             <Typography variant="h3">Login</Typography>
-             </Box>
+              <Box
+                sx={{
+                  textAlign: "center",
+                  marginTop: "10px",
+                }}
+              >
+                <Typography variant="h3">Login</Typography>
+              </Box>
             </Grid>
             <Grid item xs={12}>
               <Grid item>
@@ -207,7 +207,7 @@ function SignIn() {
                   <Typography
                     variant="body1"
                     sx={(theme) => ({
-                      color: theme.palette.redText.main,
+                      color: "red",
                     })}
                   >
                     {errorMessage}
@@ -244,11 +244,14 @@ function SignIn() {
                 sx={{
                   borderRadius: "200px",
                 }}
+                onClick={() => {
+                  router.push("/account/nanny");
+                }}
               >
                 {requestLoading ? (
                   <CircularProgress
                     sx={(theme) => ({
-                      color: theme.palette.white,
+                      color: "#fff",
                     })}
                   />
                 ) : (
@@ -264,4 +267,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SIgnInForm;

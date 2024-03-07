@@ -4,9 +4,9 @@ import "../styles/globals.css";
 import DefaultClientConfigs from "../components/DefaultClientConfigs";
 
 export const metadata: Metadata = {
-  title: "My SSR Page with Material UI",
+  title: "Nanny Connect",
   description:
-    "safaricom front-end boilerplate: app directory must include a root layout and root layout must define <html> and <body> tags replaces _app.js and _document.js",
+    "Nanny connect helps build trust for the employer",
 };
 
 export default function RootLayout({

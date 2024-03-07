@@ -1,4 +1,5 @@
 import SignIn from "@/containers/SignIn";
+import SIgnInForm from "@/forms/SignInForm";
 import { Box, Card } from "@mui/material";
 import React from "react";
 
@@ -17,7 +18,7 @@ function page() {
           padding: "100px",
         }}
       >
-        <SignIn />
+        <SIgnInForm />
       </Card>
     </Box>
   );

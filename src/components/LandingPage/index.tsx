@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function LandingPage() {
   const router = useRouter();
@@ -54,22 +55,28 @@ function LandingPage() {
         </Box>
         <Box display="flex" flexDirection="column" padding="20px">
           <Box marginBottom={20}>
-            <Button
-              variant="outlined"
-              size="large"
-              sx={{
-                paddingRight: "70px",
-                paddingLeft: "70px",
-                paddingTop: "20px",
-                paddingBottom: "20px",
-                borderRadius: "5px",
-                color: "#fff",
-                border: "1px solid #fff",
-                borderColor: "#fff",
-              }}
-            >
-              Become A Nanny
-            </Button>
+            {/* <Link href={{
+              pathname:"/sign-up",
+              query:{type:"nanny"}
+            }}> */}
+              <Button
+                variant="outlined"
+                size="large"
+                sx={{
+                  paddingRight: "70px",
+                  paddingLeft: "70px",
+                  paddingTop: "20px",
+                  paddingBottom: "20px",
+                  borderRadius: "5px",
+                  color: "#fff",
+                  border: "1px solid #fff",
+                  borderColor: "#fff",
+                }}
+                onClick={() => router.push("/sign-up")}
+              >
+                Become A Nanny
+              </Button>
+            {/* </Link> */}
           </Box>
           <Box>
             <Button

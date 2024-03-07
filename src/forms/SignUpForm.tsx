@@ -10,6 +10,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import Button from "@mui/material/Button";
 import { MenuItem, TextField } from "@mui/material";
+import Link from "next/link";
 
 const SignUpSchema = Yup.object().shape({
   emailAddress: Yup.string()
@@ -84,10 +85,15 @@ const SignUpContainer = () => {
         }) => (
           <FormikForm>
             <Grid container direction="column">
+              <Typography variant="h1" fontSize={26} textAlign="center" >
+                Nanny Connect
+              </Typography>
               <Grid item mt="27px" className="center">
                 <Typography
-                  variant="h2"
+                  variant="h4"
                   color="primary"
+                  textAlign="center"
+                  lineHeight={5}
                   sx={{
                     marginBottom: 1.25,
                   }}
@@ -423,17 +429,19 @@ const SignUpContainer = () => {
                   variant="contained"
                   fullWidth
                   type="submit"
-                  disabled={disableButton(values, errors)}
+                  // disabled={disableButton(values, errors)}
                 >
-                  {requestLoading ? (
-                    <CircularProgress
-                      sx={(theme) => ({
-                        // color: theme.palette.white,
-                      })}
-                    />
-                  ) : (
-                    <>SIGN UP</>
-                  )}
+                  <Link href="/sign-in">
+                    {requestLoading ? (
+                      <CircularProgress
+                        sx={(theme) => ({
+                          // color: theme.palette.white,
+                        })}
+                      />
+                    ) : (
+                      <>SIGN UP</>
+                    )}
+                  </Link>
                 </Button>
               </Grid>
             </Grid>

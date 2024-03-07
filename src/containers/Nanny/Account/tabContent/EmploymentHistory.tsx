@@ -37,10 +37,10 @@ const employment = [
 
 function EmploymentHistory() {
   return (
-    <Box>
+    <Box marginTop={50}>
       <Grid container spacing={4}>
         {employment.map((emp) => (
-          <Grid item md={6} key={emp.id}>
+          <Grid item md={6} key={emp.id} >
             <Accordion>
               <AccordionSummary
                 expandIcon={<ExpandMore />}
